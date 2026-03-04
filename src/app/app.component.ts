@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { Store } from "@ngrx/store";
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Post } from './models/post.model';
-import * as PostActions from "./actions/post.actions";
-
+import * as PostActions from './store/post.actions';
 
 interface AppState {
   post: Post;
@@ -13,28 +12,36 @@ interface AppState {
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: false,
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  post: Observable<Post>
-  text: string="";
+  post$: Observable<Post>;
+  text = '';
 
   constructor(private store: Store<AppState>) {
-    this.post = this.store.select('post');
-  }
-  editText() {
-    this.store.dispatch(new PostActions.EditText(this.text)); 
-  }
-
-  resetPost() {
-    this.store.dispatch(new PostActions.Reset());
+    this.post$ = this.store.select('post');
   }
 
   upvote() {
-    this.store.dispatch(new PostActions.Upvote());
+    this.store.dispatch(PostActions.upvote());
   }
 
   downvote() {
-    this.store.dispatch(new PostActions.Downvote());
+    this.store.dispatch(PostActions.downvote());
+  }
+
+  resetPost() {
+    this.store.dispatch(PostActions.reset());
+  }
+
+  editText() {
+    const trimmed = this.text.trim();
+    if (!trimmed) return;
+    this.store.dispatch(PostActions.editText({ text: trimmed }));
+    this.text = '';
+  }
+
+  clearHistory() {
+    this.store.dispatch(PostActions.clearHistory());
   }
 }

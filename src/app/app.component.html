@@ -1,4 +1,4 @@
-<div *ngIf="post | async as p">
+<div *ngIf="post$ | async as p">
   <h2>{{ p.text }}</h2>
   <h4>Votes: {{ p.votes }}</h4>
 
@@ -6,6 +6,13 @@
   <button (click)="downvote()">Downvote</button>
   <button (click)="resetPost()">Reset</button>
 
-  <input [(ngModel)]="text" />
+  <input [(ngModel)]="text" placeholder="New title..." />
   <button (click)="editText()">Change Title</button>
+
+  <button (click)="clearHistory()">Clear History</button>
+
+  <h4>History:</h4>
+  <ul>
+    <li *ngFor="let item of p.history">{{ item }}</li>
+  </ul>
 </div>
