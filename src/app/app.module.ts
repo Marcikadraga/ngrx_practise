@@ -4,15 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
-import { postReducer } from './store/post.reducer';
+import { PostComponent } from './features/post/post.component';
+import { postReducer } from './features/post/store/post.reducer';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    StoreModule.forRoot({ post: postReducer }),
-  ],
+  declarations: [AppComponent, PostComponent],
+  imports: [BrowserModule, FormsModule, StoreModule.forRoot({ post: postReducer })],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
