@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Post } from './models/post.model';
 import * as PostActions from './store/post.actions';
+import { selectPostState } from './store/post.selectors';
 
 interface AppState {
   post: Post;
@@ -20,7 +21,7 @@ export class PostComponent {
   text = '';
 
   constructor(private store: Store<AppState>) {
-    this.post$ = this.store.select('post');
+    this.post$ = this.store.select(selectPostState);
   }
 
   upvote() { this.store.dispatch(PostActions.upvote()); }
