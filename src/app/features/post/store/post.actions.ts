@@ -11,4 +11,8 @@ export const editText = createAction(
 
 export const doubleDownVote= createAction('[Post] Double downvote');
 export const doubleUpvote= createAction('[Post] Double upvote');
+export const randomVote = createAction(
+  '[Post] Random Vote',
+  props<{ delta: number }>()
+);
 

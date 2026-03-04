@@ -29,6 +29,10 @@ export class PostComponent {
   resetPost() { this.store.dispatch(PostActions.reset()); }
   doubleDownvote() { this.store.dispatch(PostActions.doubleDownVote()); }
   doubleUpvote(){this.store.dispatch(PostActions.doubleUpvote());}
+  randomVote() {
+    const delta = Math.floor(Math.random() * 5) - 2; // -2..+2
+    this.store.dispatch(PostActions.randomVote({ delta }));
+  }
 
   editText() {
     const trimmed = this.text.trim();

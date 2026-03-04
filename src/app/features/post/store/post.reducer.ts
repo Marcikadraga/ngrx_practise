@@ -6,6 +6,7 @@ export const initialState: Post = {
   text: 'Hello',
   votes: 0,
   history: [],
+  actionCount:0,
 };
 
 export const postReducer = createReducer(
@@ -35,6 +36,12 @@ export const postReducer = createReducer(
     history:[...state.history, 'doubleDownvote']
   })),
 
+  on(PostActions.randomVote, (state, { delta }) => ({
+    ...state,
+    votes: state.votes + delta,
+    history: [...state.history, `randomVote(${delta})`],
+  })),
+
   on(PostActions.reset, (state) => ({
     ...state,
     votes: 0,
@@ -50,5 +57,5 @@ export const postReducer = createReducer(
   on(PostActions.clearHistory, (state) => ({
     ...state,
     history: [],
-  }))
+  })),
 );
