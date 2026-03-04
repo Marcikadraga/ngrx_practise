@@ -9,3 +9,6 @@ export const editText = createAction(
   props<{ text: string }>()
 );
 
+export const doubleDownVote= createAction('[Post] Double downvote');
+export const doubleUpvote= createAction('[Post] Double upvote');
+

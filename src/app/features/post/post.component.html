@@ -3,7 +3,9 @@
     <h4>Votes: {{ p.votes }}</h4>
 
     <button (click)="upvote()">Upvote</button>
+    <button (click)="doubleUpvote()">Double upvote</button>
     <button (click)="downvote()">Downvote</button>
+    <button (click)="doubleDownvote()">Double downvote</button>
     <button (click)="resetPost()">Reset</button>
 
     <input [(ngModel)]="text" placeholder="New title..." />

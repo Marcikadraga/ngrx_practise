@@ -27,6 +27,8 @@ export class PostComponent {
   upvote() { this.store.dispatch(PostActions.upvote()); }
   downvote() { this.store.dispatch(PostActions.downvote()); }
   resetPost() { this.store.dispatch(PostActions.reset()); }
+  doubleDownvote() { this.store.dispatch(PostActions.doubleDownVote()); }
+  doubleUpvote(){this.store.dispatch(PostActions.doubleUpvote());}
 
   editText() {
     const trimmed = this.text.trim();

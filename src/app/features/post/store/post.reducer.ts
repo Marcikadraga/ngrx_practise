@@ -17,10 +17,22 @@ export const postReducer = createReducer(
     history: [...state.history, 'upvote'],
   })),
 
+  on(PostActions.doubleUpvote, (state)=>({
+    ...state,
+    votes:state.votes + 2,
+    history:[...state.history, 'doubleUpvote']
+  })),
+
   on(PostActions.downvote, (state) => ({
     ...state,
     votes: state.votes - 1,
     history: [...state.history, 'downvote'],
+  })),
+
+  on(PostActions.doubleDownVote,(state)=>({
+    ...state,
+    votes:state.votes -2,
+    history:[...state.history, 'doubleDownvote']
   })),
 
   on(PostActions.reset, (state) => ({
