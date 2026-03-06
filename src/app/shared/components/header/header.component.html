@@ -1,0 +1,28 @@
+<header class="header">
+
+    <div class="logo">
+      My Post App
+    </div>
+  
+    <div class="auth-section">
+  
+      <ng-container *ngIf="isAuthenticated$ | async; else guest">
+  
+        <span class="username">
+          Hello {{ (user$ | async)?.name }}
+        </span>
+  
+        <button (click)="logout()">Logout</button>
+  
+      </ng-container>
+  
+      <ng-template #guest>
+  
+        <button routerLink="/login">Login</button>
+        <button routerLink="/register">Register</button>
+  
+      </ng-template>
+  
+    </div>
+  
+  </header>
